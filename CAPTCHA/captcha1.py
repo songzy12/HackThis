@@ -5,7 +5,7 @@ import requests
 import cv2
 import pytesseract
 
-
+# https://nanonets.com/blog/ocr-with-tesseract/
 def get_captcha(sess):
 
     response = sess.post(
@@ -36,11 +36,13 @@ if __name__ == "__main__":
     sess = requests.session()
 
     captcha = get_captcha(sess)
-    filename = "img/%s.png" % datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
-    with open(filename, "wb") as fd:
+    filename = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+    with open("img/%s.png" % filename, "wb") as fd:
         fd.write(captcha)
     
-    answer = ocr(cv2.imread(filename))
+    answer = ocr(cv2.imread("img/%s.png" % filename))
     print(answer)
+    with open("label/%s.txt" % filename, "w") as fd:
+        fd.write(answer)
 
     send_answer(sess, answer)
