@@ -1,3 +1,5 @@
+# Hack This Captcha
+
 <https://defendtheweb.net/playground?subject=captcha>
 
 ## Parameters
@@ -6,7 +8,7 @@
 
 ### psm
 
-```
+```text
 0 = Orientation and script detection (OSD) only.
 1 = Automatic page segmentation with OSD.
 2 = Automatic page segmentation, but no OSD, or OCR. (not implemented)
@@ -30,7 +32,7 @@
 
 > Use --oem 1 for LSTM, --oem 0 for Legacy Tesseract. Please note that Legacy Tesseract models are only included in traineddata files from tessdata repo.
 
-```
+```text
 0 = Original Tesseract only.
 1 = Neural nets LSTM only.
 2 = Tesseract + LSTM.
@@ -43,7 +45,7 @@ Specify the location of tessdata path.
 
 ### CONFIGFILE
 
-```
+```text
 logfile — Redirect debug messages to file (tesseract.log).
 lstm.train — Output files used by LSTM training (OUTPUTBASE.lstmf).
 makebox — Write box file (OUTPUTBASE.box).
@@ -51,12 +53,53 @@ makebox — Write box file (OUTPUTBASE.box).
 
 ## Training
 
-<https://tesseract-ocr.github.io/tessdoc/FAQ.html#training>
+```bash
+sudo apt remove tesseract-ocr
+```
 
 <https://tesseract-ocr.github.io/tessdoc/TrainingTesseract-4.00.html>
 
-<https://github.com/tesseract-ocr/tesstrain>
+### configure 
+
+<https://tesseract-ocr.github.io/tessdoc/Compiling.html>
+
+```bash
+sudo apt-get install g++ # or clang++ (presumably)
+sudo apt-get install autoconf automake libtool
+sudo apt-get install pkg-config
+sudo apt-get install libpng-dev
+sudo apt-get install libjpeg8-dev
+sudo apt-get install libtiff5-dev
+sudo apt-get install zlib1g-dev
+
+sudo apt-get install libicu-dev
+sudo apt-get install libpango1.0-dev
+sudo apt-get install libcairo2-dev
+
+sudo apt-get install libleptonica-dev
+```
+
+```bash
+./autogen.sh
+./configure
+```
+
+### training tools
+
+<https://tesseract-ocr.github.io/tessdoc/TrainingTesseract-4.00.html#building-the-training-tools>
+
+```bash
+make
+make training
+sudo make training-install
+```
 
 ## Reference
 
 <http://devloop.users.sourceforge.net/index.php?article187/how-i-solved-hackthis-captcha-challenges>
+
+<https://distill.pub/2017/ctc/>
+
+<https://www.endpoint.com/blog/2018/07/09/training-tesseract-models-from-scratch>
+
+<https://github.com/tesseract-ocr/tesstrain>
