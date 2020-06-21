@@ -51,7 +51,7 @@ lstm.train — Output files used by LSTM training (OUTPUTBASE.lstmf).
 makebox — Write box file (OUTPUTBASE.box).
 ```
 
-## Training
+## Train
 
 ```bash
 sudo apt remove tesseract-ocr
@@ -59,7 +59,7 @@ sudo apt remove tesseract-ocr
 
 <https://tesseract-ocr.github.io/tessdoc/TrainingTesseract-4.00.html>
 
-### configure 
+### configure
 
 <https://tesseract-ocr.github.io/tessdoc/Compiling.html>
 
@@ -75,24 +75,45 @@ sudo apt-get install zlib1g-dev
 sudo apt-get install libicu-dev
 sudo apt-get install libpango1.0-dev
 sudo apt-get install libcairo2-dev
+```
 
+```bash
 sudo apt-get install libleptonica-dev
 ```
 
 ```bash
 ./autogen.sh
 ./configure
-```
-
-### training tools
-
-<https://tesseract-ocr.github.io/tessdoc/TrainingTesseract-4.00.html#building-the-training-tools>
-
-```bash
 make
+sudo make install
+sudo ldconfig
 make training
 sudo make training-install
 ```
+
+### tesstrain
+
+<https://github.com/tesseract-ocr/tesstrain>
+
+```bash
+# Language Type - Indic, RTL or blank. Default: '$(LANG_TYPE)'
+LANG_TYPE ?=
+```
+
+RTL: right to left.
+
+```bash
+# Network specification. Default: $(NET_SPEC)
+NET_SPEC := [1,36,0,1 Ct3,3,16 Mp3,3 Lfys48 Lfx96 Lrx96 Lfx256 O1c\#\#\#]
+```
+
+We need to set the TESSDATA_PREFIX config variable as:
+
+```bash
+TESSDATA_PREFIX := /home/songzy/tesstrain/usr/share/tessdata/
+```
+
+Also, note this: <https://github.com/tesseract-ocr/tesseract/issues/1101#issuecomment-325916902>.
 
 ## Reference
 
@@ -101,5 +122,3 @@ sudo make training-install
 <https://distill.pub/2017/ctc/>
 
 <https://www.endpoint.com/blog/2018/07/09/training-tesseract-models-from-scratch>
-
-<https://github.com/tesseract-ocr/tesstrain>
