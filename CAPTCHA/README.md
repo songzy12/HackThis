@@ -89,6 +89,14 @@ lstm.train — Output files used by LSTM training (OUTPUTBASE.lstmf).
 makebox — Write box file (OUTPUTBASE.box).
 ```
 
+### lstmtraining
+
+`src/training/lstmtraining.cpp`
+
+### network
+
+`src/lstm/network.h`
+
 ## tesstrain
 
 <https://github.com/tesseract-ocr/tesstrain>
