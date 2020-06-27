@@ -1,1 +1,6 @@
 cookies.txt
+
+*.box
+*.lstmf
+
+data/hack_this_captcha

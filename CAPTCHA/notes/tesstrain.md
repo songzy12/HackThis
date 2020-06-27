@@ -11,11 +11,17 @@
 > Images must be TIFF and have the extension `.tif` or PNG and have the extension `.png`, `.bin.png` or `.nrm.png`.
 > Transcriptions must be single-line plain text and have the same name as the line image but with the image extension replaced by `.gt.txt`.
 
-## eng.traineddata
+## eng.traineddata & lstm.train
 
 ```make
 # Download tesseract-langs
 tesseract-langs: $(TESSDATA)/eng.traineddata
+```
+
+Also:
+
+```bash
+wget https://github.com/tesseract-ocr/tesseract/blob/master/tessdata/configs/lstm.train
 ```
 
 Why do we need this?
@@ -25,11 +31,28 @@ Why do we need this?
 	tesseract "$${image}" $* --psm $(PSM) lstm.train
 ```
 
-## traineddata
+## proto-model
+
+```make
+# Build the proto model
+proto-model: $(PROTO_MODEL)
+
+$(PROTO_MODEL): $(OUTPUT_DIR)/unicharset data/radical-stroke.txt
+	combine_lang_model \
+	  --input_unicharset $(OUTPUT_DIR)/unicharset \
+	  --script_dir data \
+	  --numbers $(NUMBERS_FILE) \
+	  --puncs $(PUNC_FILE) \
+	  --words $(WORDLIST_FILE) \
+	  --output_dir data \
+	  $(RECODER) \
+	  --lang $(MODEL_NAME)
+```
+
+NOTE: Then the result `$MODEL_NAME.traineddata` would be wrote into the output_dir `data`, which has nothing to do with the environment variable `$OUTPUT_DIR`, which would cause bugs in further training process. Workaround:
 
 ```bash
-make training MODEL_NAME=hack_this_captcha
-make unicharset lists proto-model training
+mv data/hack_this_captcha/* ../data/hack_this_captcha/
 ```
 
 ## variables
