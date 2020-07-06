@@ -8,7 +8,8 @@
 export ROOT_DIR="/home/songzy/HackThis/CAPTCHA"
 export TESSDATA="$ROOT_DIR/tessdata"
 export MODEL_NAME="hack_this_captcha"
-export OUTPUT_DIR="$ROOT_DIR"/data/"$MODEL_NAME"
+export DATA_DIR="$ROOT_DIR"/data
+export OUTPUT_DIR="$DATA_DIR"/"$MODEL_NAME"
 export GROUND_TRUTH_DIR="$OUTPUT_DIR-ground-truth"
 ```
 
@@ -16,6 +17,7 @@ export GROUND_TRUTH_DIR="$OUTPUT_DIR-ground-truth"
 make clean \
 TESSDATA="$TESSDATA" \
 MODEL_NAME="$MODEL_NAME" \
+DATA_DIR="$DATA_DIR"
 OUTPUT_DIR="$OUTPUT_DIR" \
 GROUND_TRUTH_DIR="$GROUND_TRUTH_DIR" \
 TESSDATA_PREFIX="$TESSDATA"
@@ -25,6 +27,7 @@ TESSDATA_PREFIX="$TESSDATA"
 make tesseract-langs \
 TESSDATA="$TESSDATA" \
 MODEL_NAME="$MODEL_NAME" \
+DATA_DIR="$DATA_DIR"
 OUTPUT_DIR="$OUTPUT_DIR" \
 GROUND_TRUTH_DIR="$GROUND_TRUTH_DIR" \
 TESSDATA_PREFIX="$TESSDATA"
@@ -59,6 +62,7 @@ wget https://raw.githubusercontent.com/tesseract-ocr/langdata/master/Common.unic
 make proto-model \
 TESSDATA="$TESSDATA" \
 MODEL_NAME="$MODEL_NAME" \
+DATA_DIR="$DATA_DIR" \
 OUTPUT_DIR="$OUTPUT_DIR" \
 GROUND_TRUTH_DIR="$GROUND_TRUTH_DIR" \
 TESSDATA_PREFIX="$TESSDATA"
@@ -76,6 +80,7 @@ Now, we have `$MODEL_NAME.traineddata`, `$MODEL_NAME.unicharset` under `$OUTPUT_
 make training \
 TESSDATA="$TESSDATA" \
 MODEL_NAME="$MODEL_NAME" \
+DATA_DIR="$DATA_DIR" \
 OUTPUT_DIR="$OUTPUT_DIR" \
 GROUND_TRUTH_DIR="$GROUND_TRUTH_DIR" \
 TESSDATA_PREFIX="$TESSDATA"
