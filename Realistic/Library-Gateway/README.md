@@ -1,8 +1,10 @@
+# Library Gateway
+
 <https://defendtheweb.net/playground/library-gateway>
 
 Click into the login page <https://defendtheweb.net/extras/playground/real/2/login.php> and check the source code:
 
-```
+```javascript
 				var username= document.getElementById('username').value;
 				var password= document.getElementById('password').value;
 				URL= "members/" + username + " " + password + ".htm";
@@ -12,12 +14,12 @@ Click into the login page <https://defendtheweb.net/extras/playground/real/2/log
 				req = getreq();
 				req.onreadystatechange = exists;
 				req.open("get", path, true);
-				req.send(null);     
+				req.send(null);
 ```
 
 Then we can just open <https://defendtheweb.net/extras/playground/real/2/members/>, and see:
 
-```
+```text
 Index of /members
 Name	Last modified	Size	Description
 Parent Directory	 	-	 
@@ -29,6 +31,7 @@ luke 9312.htm	2011-03-12 18:30	0.0K
 ```
 
 So we can get some pair of username / password:
+
 - anna god
 - jack kack
 - dave fish_r_friends
