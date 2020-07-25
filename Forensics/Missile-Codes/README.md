@@ -40,9 +40,11 @@ Unzip the rar file: `Forensics/Missile-Codes/output/rar/00017414.rar`.
 
 We would get an audio file: `conversation_dtmf.wav`.
 
-## dtmf
+## DTMF
 
-Search `dtmf` in the audio file name, we would know <https://en.wikipedia.org/wiki/Dual-tone_multi-frequency_signaling>.
+Search `dtmf` in the audio file name, we can see <https://en.wikipedia.org/wiki/Dual-tone_multi-frequency_signaling>.
+
+In short, the encoding is [!dtmf](./dtmf.png).
 
 ## multimon-ng
 
