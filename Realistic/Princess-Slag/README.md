@@ -8,13 +8,13 @@ The admin page is accessible at: <https://defendtheweb.net/extras/playground/pri
 
 We try to access <https://defendtheweb.net/extras/playground/princess-slag/?p=admin>, and then get:
 
-```
+```text
 Warning: file_get_contents(admin.html) [function.file-get-contents]: failed to open stream: No such file or directory in pages on line 22
 ```
 
 Thus, it is able to use Null Byte Injection to let `.php` pass the check of `.html` suffix: <https://defendtheweb.net/extras/playground/princess-slag/?p=admin.php%00>.
 
-```
+```text
 Warning: file_get_contents(admin.php) [function.file-get-contents]: failed to open stream: No such file or directory in pages on line 22
 ```
 
@@ -22,7 +22,7 @@ Then go a leval up: <https://defendtheweb.net/extras/playground/princess-slag/?p
 
 Then view source:
 
-```
+```php
 <div id="content">
     <?php
         session_start();
