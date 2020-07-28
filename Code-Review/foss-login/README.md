@@ -15,15 +15,22 @@ USE dev;
 
 ```mysql
 DROP TABLE users;
-CREATE TABLE users (uid  VARCHAR(20), username VARCHAR(20), password VARCHAR(100), email VARCHAR(20), reset VARCHAR(20));
+CREATE TABLE users (
+        uid  VARCHAR(20),
+        username VARCHAR(20),
+        password VARCHAR(100),
+        email VARCHAR(20),
+        reset VARCHAR(20),
+        PRIMARY KEY (uid)
+);
 ```
 
 ```mysql
-INSERT INTO users VALUES ('1','memtash','', 'email.com', '');
+INSERT INTO users VALUES ('1','memtash','xxx', 'email.com', 'xxx');
 ```
 
 ```mysql
-UPDATE users SET password = '' WHERE username = 'memtash';
+UPDATE users SET password = 'xxx' WHERE username = 'memtash';
 ```
 
 ## Install PHP
@@ -53,7 +60,7 @@ Maybe we can do sql injection here:
             if ($row) {
 ```
 
-Maybe I should first learn more about PHP.
+> A prepared statement can only execute one MySQL query.
 
 ## Reference
 
